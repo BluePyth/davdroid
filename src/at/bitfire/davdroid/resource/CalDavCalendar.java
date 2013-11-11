@@ -30,7 +30,7 @@ public class CalDavCalendar extends RemoteCollection<Event> {
 	}
 	
 	
-	public CalDavCalendar(String baseURL, String user, String password, boolean preemptiveAuth) throws URISyntaxException {
-		super(baseURL, user, password, preemptiveAuth);
+	public CalDavCalendar(String baseURL, String user, String password, boolean preemptiveAuth, boolean httpsDisableHostnameVerification) throws URISyntaxException {
+		super(baseURL, user, password, preemptiveAuth, httpsDisableHostnameVerification);
 	}
 }

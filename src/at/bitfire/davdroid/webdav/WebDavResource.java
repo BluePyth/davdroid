@@ -40,6 +40,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpOptions;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.params.ClientPNames;
+import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
+import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicLineParser;
@@ -109,7 +111,7 @@ public class WebDavResource {
 		client.getParams().setBooleanParameter(ClientPNames.HANDLE_REDIRECTS, false);
 	}
 	
-	public WebDavResource(URI baseURL, String username, String password, boolean preemptive, boolean trailingSlash) throws URISyntaxException {
+	public WebDavResource(URI baseURL, String username, String password, boolean preemptive, boolean trailingSlash, boolean httpsDisableHostnameVerification) throws URISyntaxException {
 		this(baseURL, trailingSlash);
 		
 		// authenticate
@@ -119,6 +121,12 @@ public class WebDavResource {
 		if (preemptive) {
 			Log.i(TAG, "Using preemptive Basic Authentication");
 			client.addRequestInterceptor(new PreemptiveAuthInterceptor(), 0);
+		}
+
+		// Force hostname if needed
+		if(httpsDisableHostnameVerification && baseURL.getScheme().equals("https")) {
+			SSLSocketFactory sf = (SSLSocketFactory) client.getConnectionManager().getSchemeRegistry().getScheme("https").getSocketFactory();
+			sf.setHostnameVerifier(new AllowAllHostnameVerifier());
 		}
 	}
 

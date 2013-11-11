@@ -36,8 +36,8 @@ public abstract class RemoteCollection<ResourceType extends Resource> {
 	abstract protected MultigetType multiGetType();
 	abstract protected ResourceType newResourceSkeleton(String name, String ETag);
 	
-	public RemoteCollection(String baseURL, String user, String password, boolean preemptiveAuth) throws URISyntaxException {
-		collection = new WebDavResource(new URI(baseURL), user, password, preemptiveAuth, true);
+	public RemoteCollection(String baseURL, String user, String password, boolean preemptiveAuth, boolean httpsDisableHostnameVerification) throws URISyntaxException {
+		collection = new WebDavResource(new URI(baseURL), user, password, preemptiveAuth, true, httpsDisableHostnameVerification);
 	}
 
 	

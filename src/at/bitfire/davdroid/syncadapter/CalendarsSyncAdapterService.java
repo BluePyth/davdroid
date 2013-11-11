@@ -72,7 +72,8 @@ public class CalendarsSyncAdapterService extends Service {
 					RemoteCollection dav = new CalDavCalendar(uri.toString(),
 						accountManager.getUserData(account, Constants.ACCOUNT_KEY_USERNAME),
 						accountManager.getPassword(account),
-						Boolean.parseBoolean(accountManager.getUserData(account, Constants.ACCOUNT_KEY_AUTH_PREEMPTIVE)));
+						Boolean.parseBoolean(accountManager.getUserData(account, Constants.ACCOUNT_KEY_AUTH_PREEMPTIVE)),
+						Boolean.parseBoolean(accountManager.getUserData(account, Constants.ACCOUNT_KEY_HTTPS_DISABLE_HOSTNAME_VERIFICATION)));
 					
 					map.put(calendar, dav);
 				}

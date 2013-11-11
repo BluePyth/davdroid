@@ -16,6 +16,7 @@ public class Constants {
 		ACCOUNT_KEY_USERNAME = "user_name",
 		ACCOUNT_KEY_BASE_URL = "principal_url",
 		ACCOUNT_KEY_AUTH_PREEMPTIVE = "auth_preemptive",
+		ACCOUNT_KEY_HTTPS_DISABLE_HOSTNAME_VERIFICATION = "https_disable_hostname_verification",
 		
 		ACCOUNT_KEY_ADDRESSBOOK_PATH = "addressbook_path",
 		ACCOUNT_KEY_ADDRESSBOOK_CTAG = "addressbook_ctag",

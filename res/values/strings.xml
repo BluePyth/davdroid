@@ -10,6 +10,7 @@
     </string-array>
 
     <string name="http_warning">"If you don't use encryption (HTTPS), other people may easily intercept your login details, contacts and events."</string>
+    <string name="https_disable_hostname_verification">Disables hostname verification for SSL handshake. Use this option only if you host your own carddav/caldav server.</string>
     <string name="user_name">User name:</string>
     <string name="password">Password:</string>
     <string name="root_url">Root URL (collections will be auto-detected):</string>

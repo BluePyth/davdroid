@@ -35,6 +35,7 @@ public class EnterCredentialsFragment extends Fragment implements TextWatcher {
 	TextView textHttpWarning;
 	EditText editBaseURL, editUserName, editPassword;
 	CheckBox checkboxPreemptive;
+	CheckBox checkboxHttpsDisableHostnameVerification;
 	Button btnNext;
 	
 
@@ -49,6 +50,7 @@ public class EnterCredentialsFragment extends Fragment implements TextWatcher {
 		
 		// protocol selection spinner
 		textHttpWarning = (TextView) v.findViewById(R.id.http_warning);
+		checkboxHttpsDisableHostnameVerification = (CheckBox) v.findViewById(R.id.https_disable_hostname_verification);
 		
 		Spinner spnrProtocol = (Spinner) v.findViewById(R.id.select_protocol);
 		spnrProtocol.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -56,6 +58,7 @@ public class EnterCredentialsFragment extends Fragment implements TextWatcher {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				protocol = parent.getAdapter().getItem(position).toString();
 				textHttpWarning.setVisibility(protocol.equals("https://") ? View.GONE : View.VISIBLE);
+				checkboxHttpsDisableHostnameVerification.setVisibility(protocol.equals("http://") ? View.GONE : View.VISIBLE);
 			}
 
 			@Override
@@ -111,6 +114,7 @@ public class EnterCredentialsFragment extends Fragment implements TextWatcher {
 		args.putString(QueryServerDialogFragment.EXTRA_USER_NAME, editUserName.getText().toString());
 		args.putString(QueryServerDialogFragment.EXTRA_PASSWORD, editPassword.getText().toString());
 		args.putBoolean(QueryServerDialogFragment.EXTRA_AUTH_PREEMPTIVE, checkboxPreemptive.isChecked());
+		args.putBoolean(QueryServerDialogFragment.EXTRA_HTTPS_DISABLE_HOSTNAME_VERIFICATION, checkboxHttpsDisableHostnameVerification.isChecked());
 		
 		DialogFragment dialog = new QueryServerDialogFragment();
 		dialog.setArguments(args);
